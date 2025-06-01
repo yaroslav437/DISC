@@ -39,8 +39,17 @@ header {
     transition: background 0.3s ease;
 }
 
-.menu > li > a:hover {
-    background-color: #005a00;
+/* Style de l'onglet actif */
+.menu > li > a.active {
+    background-color: black;
+    color: white;
+}
+
+/* Effet au survol */
+.menu > li > a:hover,
+.submenu li a:hover {
+    background-color: black;
+    color: white;
 }
 
 /* Sous-menus */
@@ -66,11 +75,7 @@ header {
     font-weight: normal;
     padding: 8px;
     display: block;
-    transition: color 0.3s ease;
-}
-
-.submenu li a:hover {
-    color: #006400;
+    transition: background 0.3s ease;
 }
 
 /* Affichage des sous-menus */
@@ -96,3 +101,4 @@ footer {
     padding: 15px;
     margin-top: 20px;
 }
+
