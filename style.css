@@ -7,80 +7,198 @@ body {
     padding: 0;
 }
 
+/* Bande noire */
+.top-bar {
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+/* Texte en petit caractère */
+.author {
+    font-size: 12px;
+    font-weight: normal;
+    opacity: 0.7;
+}
+
+/* Bouton Connexion */
+#login-btn {
+    background-color: white;
+    color: blue;
+    border: none;
+    padding: 8px 15px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    position: absolute;
+    left: 10px;
+    top: 5px;
+    border-radius: 5px;
+}
+
 /* En-tête */
 header {
     background-color: #006400;
     color: white;
     text-align: center;
     padding: 20px;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+}
+
+/* Logo */
+.club-logo {
+    display: block;
+    margin: 0 auto;
+    width: 100px;
+    height: auto;
+    margin-top: 15px;
+    margin-bottom: 10px;
 }
 
 /* Menu principal */
 .menu {
-    list-style: none;
     display: flex;
     justify-content: center;
+    gap: 20px;
+    list-style: none;
     padding: 0;
+    position: relative;
+    z-index: 999;
 }
 
+/* Boutons du menu */
 .menu > li {
     position: relative;
-    margin: 10px;
 }
 
 .menu > li > a {
-    text-decoration: none;
-    color: white;
+    background-color: white;
+    color: black;
     font-weight: bold;
-    padding: 12px 18px;
-    background-color: #008000;
-    border-radius: 5px;
+    padding: 14px 20px;
+    border-radius: 6px;
     display: block;
-    transition: background 0.3s ease;
+    transition: background 0.3s ease, color 0.3s ease;
+    text-align: center;
 }
 
-/* Style de l'onglet actif */
-.menu > li > a.active {
+/* Effet au survol */
+.menu > li > a:hover {
     background-color: black;
     color: white;
 }
 
-/* Effet au survol */
-.menu > li > a:hover,
+/* Sous-menus avec coins arrondis */
+.submenu {
+    display: none;
+    position: absolute;
+    background-color: white;
+    padding: 10px;
+    width: 200px;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 10px; /* Coins arrondis */
+    overflow: hidden;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
+
+/* Espacement des éléments du sous-menu */
+.submenu li {
+    margin: 8px 0;
+}
+
+/* Sous-menu liens */
+.submenu li a {
+    color: black;
+    text-align: center;
+}
+
+/* Effet au survol des sous-menus */
 .submenu li a:hover {
     background-color: black;
     color: white;
 }
 
-/* Sous-menus */
-.submenu {
-    display: none;
-    position: absolute;
-    background-color: white;
-    list-style: none;
-    padding: 10px;
-    width: 200px;
-    top: 100%;
-    left: 0;
-    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
-}
-
-.submenu li {
-    margin: 5px 0;
-}
-
-.submenu li a {
-    text-decoration: none;
-    color: #333;
-    font-weight: normal;
-    padding: 8px;
+/* Affichage correct au survol */
+.menu > li:hover .submenu,
+.menu > li:focus-within .submenu {
     display: block;
-    transition: background 0.3s ease;
+    opacity: 1;
+    visibility: visible;
 }
 
-/* Affichage des sous-menus */
+/* Ajout d'une animation pour Chrome */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        visibility: hidden;
+    }
+    to {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
 .menu > li:hover .submenu {
-    display: block;
+    animation: fadeIn 0.2s ease-in-out;
+}
+
+/* Boîte de connexion */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1001;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    background-color: white;
+    box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.modal-content {
+    text-align: center;
+}
+
+.close {
+    color: red;
+    font-size: 22px;
+    font-weight: bold;
+    cursor: pointer;
+    float: right;
+}
+
+/* Champs de formulaire */
+input {
+    width: 100%;
+    padding: 8px;
+    margin: 8px 0;
+    border-radius: 5px;
+}
+
+/* Bouton de soumission */
+.modal button {
+    background-color: blue;
+    color: white;
+    padding: 8px;
+    border-radius: 5px;
 }
 
 /* Contenu principal */
@@ -102,3 +220,32 @@ footer {
     margin-top: 20px;
 }
 
+/* Responsive Design */
+@media (max-width: 768px) {
+    .top-bar {
+        font-size: 16px;
+        padding: 8px;
+    }
+
+    header {
+        flex-direction: column;
+        padding: 15px;
+        margin-top: 60px;
+    }
+
+    .menu {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .menu > li {
+        margin: 5px 0;
+    }
+
+    .submenu {
+        position: relative;
+        width: 100%;
+        left: auto;
+        transform: none;
+    }
+}
